@@ -9,17 +9,28 @@ public class HarpoonFireScript : MonoBehaviour
     public int speed = 200;
     public bool fired = false;
     private Vector3 initial;
+    private GameObject harpoon;
+
+    private float previousAngle = 0;
+    private float nextAngle = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         projectile = GameObject.Find("HarpoonProjectile");
         rope = GameObject.Find("Rope");
-
+        harpoon = GameObject.Find("harpoon");
         initial = projectile.transform.position;
 
     }
-
+/*
+    void OnMouseDrag() {
+        Vector3 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        nextAngle = Vector3.Angle(direction, Vector3.down);
+        harpoon.transform.Rotate(Vector3.forward,nextAngle-previousAngle);
+        previousAngle = nextAngle;
+    }
+*/
     void OnMouseDown()
     {
         Debug.Log("Harpoon Event: OnMouseDown");
