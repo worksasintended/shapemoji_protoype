@@ -9,10 +9,19 @@ public class HarpoonCollisionScript : MonoBehaviour
     {
         
     }
+/*
+    void OnCollisionEnter(Collision collision) {
+        Debug.Log("Harpoon Event: Collider");
+    }
 
-    void OnCollisionEnter2D(Collision2D other){
+    void OnCollisionEnter2D(Collision2D other) {
         Debug.Log("Harpoon Event: Collider");
 
+    }
+*/
+    void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("Harpoon Event: Collider");        
+        GameObject.Find("HarpoonCanon").GetComponent<HarpoonFireScript>().fired = false;
     }
 
     // Update is called once per frame

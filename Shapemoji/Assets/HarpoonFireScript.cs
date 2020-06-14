@@ -7,7 +7,7 @@ public class HarpoonFireScript : MonoBehaviour
     private GameObject projectile;
     private GameObject rope;
     public int speed = 200;
-    private bool fired = false;
+    public bool fired = false;
     private Vector3 initial;
 
     // Start is called before the first frame update
