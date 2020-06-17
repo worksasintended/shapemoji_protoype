@@ -3897,7 +3897,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1158794076}
   m_Layer: 0
-  m_Name: yellowBase
+  m_Name: blueBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3932,7 +3932,7 @@ GameObject:
   - component: {fileID: 1161195758}
   - component: {fileID: 1161195759}
   m_Layer: 0
-  m_Name: redBase
+  m_Name: greenBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
