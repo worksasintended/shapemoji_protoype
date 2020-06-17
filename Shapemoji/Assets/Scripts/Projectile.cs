@@ -39,7 +39,7 @@ public class Projectile : MonoBehaviour
     {
         if(fired) {
             transform.Translate(speed * Vector3.right * Time.deltaTime);
-            GameObject.Find("Rope").GetComponent<Rope>().length = 6.5f * (transform.position-initial).magnitude/initial.magnitude;
+            GameObject.Find("Rope").GetComponent<Rope>().length = 1250.0f * (transform.position-initial).magnitude/initial.magnitude;
 
         }
     }

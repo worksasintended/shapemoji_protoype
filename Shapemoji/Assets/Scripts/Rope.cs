@@ -26,7 +26,7 @@ public class Rope : MonoBehaviour
     /// </summary>
     void Update()
     {
-        Vector3 scale = new Vector3(length, 1.0f, 0.0f);
+        Vector3 scale = new Vector3(length*1.0f, 100.0f, 0.0f);
         transform.localScale = scale;
         
     }

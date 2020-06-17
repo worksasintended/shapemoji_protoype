@@ -12,9 +12,9 @@ public class Canon : MonoBehaviour
 {
     public bool aimDisabled = false;
 
-    private GameObject projectile;
+    public GameObject projectile;
     
-    private GameObject harpoon;
+    public GameObject harpoon;
     private bool onDrag = false;
 
     private float previousAngle = 0;
@@ -25,8 +25,8 @@ public class Canon : MonoBehaviour
     /// </summary>
     void Start()
     {
-        projectile = GameObject.Find("HarpoonProjectile");
-        harpoon = GameObject.Find("harpoon");       
+        //projectile = GameObject.Find("HarpoonProjectile");
+        //harpoon = GameObject.Find("harpoon");       
 
     }
 
@@ -59,9 +59,12 @@ public class Canon : MonoBehaviour
     /// </summary>
     void OnMouseUp()
     {
-        onDrag = false;
-        aimDisabled = true;
-        projectile.GetComponent<Projectile>().fired = true;
+        if(!aimDisabled) {
+
+            onDrag = false;
+            aimDisabled = true;
+            projectile.GetComponent<Projectile>().fired = true;
+        }
     }
 
     /// <summary>
