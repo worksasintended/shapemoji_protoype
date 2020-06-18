@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4099270202076175353}
   - component: {fileID: 4099270202076175350}
-  - component: {fileID: -2863486619091806573}
-  - component: {fileID: 1597313127040789823}
-  - component: {fileID: -2614870874968185852}
-  - component: {fileID: 4796496374696218420}
-  - component: {fileID: 657118857578308825}
+  - component: {fileID: 149338517828171221}
+  - component: {fileID: -3587351613115103548}
+  - component: {fileID: 3671557790828612895}
+  - component: {fileID: 7296049307394439786}
+  - component: {fileID: 8551015283548220836}
   m_Layer: 0
-  m_Name: CircleHalfe
+  m_Name: CircleHalfe1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,9 +29,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4099270202076175352}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1171, y: 0.096, z: 0}
-  m_LocalScale: {x: 25, y: 25, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 9f3f90957ec972e4fb8b54f1454d9b58, type: 3}
   m_Color: {r: 0.8944915, g: 1, b: 0.4481132, a: 1}
   m_FlipX: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &-2863486619091806573
+--- !u!60 &149338517828171221
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +140,7 @@ PolygonCollider2D:
       - {x: 0.29999998, y: -1.0849999}
       - {x: 0.53999996, y: -1.045}
       - {x: 0.75, y: -0.965}
---- !u!114 &1597313127040789823
+--- !u!114 &-3587351613115103548
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +168,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isSelected: 0
---- !u!114 &-2614870874968185852
+--- !u!114 &3671557790828612895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,7 +190,7 @@ MonoBehaviour:
   Dampening: -1
   Inertia: 0
   remainingTranslation: {x: 0, y: 0, z: 0}
---- !u!114 &4796496374696218420
+--- !u!114 &7296049307394439786
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,7 +213,7 @@ MonoBehaviour:
   Sensitivity: 1
   Dampening: -1
   remainingScale: {x: 0, y: 0, z: 0}
---- !u!114 &657118857578308825
+--- !u!114 &8551015283548220836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

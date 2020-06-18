@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1407376521457734786}
   - component: {fileID: 1407376521457734785}
-  - component: {fileID: 3264605233383887767}
-  - component: {fileID: 4065222509383862109}
-  - component: {fileID: 8703251455893701431}
-  - component: {fileID: 4028129253125908024}
-  - component: {fileID: 5119203096012350263}
+  - component: {fileID: -2346740217239368545}
+  - component: {fileID: 762248334361476959}
+  - component: {fileID: -5191030587552348904}
+  - component: {fileID: 2858437694663995272}
+  - component: {fileID: 1905708229508614595}
   m_Layer: 0
-  m_Name: TriangleEquilateral
+  m_Name: TriangleEquilateral1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,9 +29,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1407376521457734787}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1646, y: 0.039, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: c214f7b8c2444444fa12d6778c0ac6f3, type: 3}
   m_Color: {r: 0.8773585, g: 0.13656996, b: 0.628455, a: 1}
   m_FlipX: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &3264605233383887767
+--- !u!60 &-2346740217239368545
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,7 +167,7 @@ PolygonCollider2D:
       - {x: -3.08, y: -2.565}
       - {x: -0.61, y: -2.565}
       - {x: -0.59999996, y: -2.5549998}
---- !u!114 &4065222509383862109
+--- !u!114 &762248334361476959
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,7 +195,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isSelected: 0
---- !u!114 &8703251455893701431
+--- !u!114 &-5191030587552348904
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,7 +217,7 @@ MonoBehaviour:
   Dampening: -1
   Inertia: 0
   remainingTranslation: {x: 0, y: 0, z: 0}
---- !u!114 &4028129253125908024
+--- !u!114 &2858437694663995272
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -240,7 +240,7 @@ MonoBehaviour:
   Dampening: -1
   remainingTranslation: {x: 0, y: 0, z: 0}
   remainingRotation: {x: 0, y: 0, z: 0, w: 1}
---- !u!114 &5119203096012350263
+--- !u!114 &1905708229508614595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

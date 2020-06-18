@@ -5,11 +5,11 @@
 public class InventorySystem : MonoBehaviour
 {
     [SerializeField] public GameObject[] ownedStones;
-    [SerializeField] public GameObject[] inventarSlots;
+    [SerializeField] public GameObject[] inventorySlots;
     
     private void Start()
     {
-        foreach (var slot in inventarSlots)
+        foreach (var slot in inventorySlots)
         {
             var position = slot.transform.position;
             var layer = slot.layer + 1;
