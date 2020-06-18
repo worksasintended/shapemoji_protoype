@@ -11,10 +11,14 @@ using UnityEngine;
 /// <param name="speed">
 /// Speed of the fired Projectile
 /// </param>
+/// <param name="rope">
+/// Rope linked to Projectile
+/// </param>
 public class Projectile : MonoBehaviour
 {
     public bool fired = false;
     public float speed = 400;
+    public GameObject rope;
     private Vector3 initial;
 
     /// <summary>
@@ -39,8 +43,7 @@ public class Projectile : MonoBehaviour
     {
         if(fired) {
             transform.Translate(speed * Vector3.right * Time.deltaTime);
-            GameObject.Find("Rope").GetComponent<Rope>().length = 1250.0f * (transform.position-initial).magnitude/initial.magnitude;
-
+            rope.GetComponent<Rope>().length = (transform.position-initial).magnitude;
         }
     }
 }

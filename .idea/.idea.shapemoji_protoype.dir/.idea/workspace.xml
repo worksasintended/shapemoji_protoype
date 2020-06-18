@@ -19,14 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4bb1f06-6988-4357-80aa-807ea47c6980" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Shapemoji/Assets/Canon.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shapemoji/Assets/Canon.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shapemoji/Assets/Projectile.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shapemoji/Assets/Projectile.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shapemoji/Assets/Rope.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shapemoji/Assets/Rope.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shapemoji/Assets/Scenes/Scene_1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Shapemoji/Assets/Scenes/Scene_1.unity" afterDir="false" />
+    <list default="true" id="a4bb1f06-6988-4357-80aa-807ea47c6980" name="Default Changelist" comment="project restructure">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.shapemoji_protoype.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.shapemoji_protoype.dir/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +33,9 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Shapemoji/Assets/Scenes/Scene1.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Scene1.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Scene_1.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Shapemoji/Assets/Scenes/Scene_1.unity" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Shapemoji/Assets/Scripts/Canon.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Scene1.unity" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -66,8 +63,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1592421527768</updated>
-      <workItem from="1592421543814" duration="1146000" />
+      <workItem from="1592421543814" duration="1620000" />
     </task>
+    <task id="LOCAL-00001" summary="project restructure">
+      <created>1592425671797</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1592425671797</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
@@ -85,6 +90,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="project restructure" />
+    <option name="LAST_COMMIT_MESSAGE" value="project restructure" />
   </component>
   <component name="WindowStateProjectService">
     <state x="0" y="0" width="1280" height="720" key="MergeDialog" timestamp="1592422017223">
@@ -95,6 +102,10 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="280" y="122" key="MultipleFileMergeDialog/0.0.1280.720@0.0.1280.720" timestamp="1592422017233" />
+    <state x="233" y="93" key="Vcs.Push.Dialog.v2" timestamp="1592425798596">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="233" y="93" key="Vcs.Push.Dialog.v2/0.0.1280.720@0.0.1280.720" timestamp="1592425798596" />
     <state x="623" y="287" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592421682856">
       <screen x="0" y="0" width="1280" height="720" />
     </state>

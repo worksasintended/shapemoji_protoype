@@ -8,6 +8,12 @@ using UnityEngine;
 /// <param name="aimDisabled">
 /// Disables Drag & Drop Aim
 /// </param>
+/// <param name="projectile">
+/// Projectile linked to Canon
+/// </param>
+/// <param name="harpoon">
+/// Harpoon linked to Canon
+/// </param>
 public class Canon : MonoBehaviour
 {
     public bool aimDisabled = false;
@@ -21,12 +27,10 @@ public class Canon : MonoBehaviour
     private float nextAngle = 0;    
 
     /// <summary>
-    /// Initializes private variables
+    /// Start Method
     /// </summary>
     void Start()
-    {
-        //projectile = GameObject.Find("HarpoonProjectile");
-        //harpoon = GameObject.Find("harpoon");       
+    { 
 
     }
 
@@ -34,24 +38,18 @@ public class Canon : MonoBehaviour
     /// Harpoon Aim using Drag & Drop
     /// </summary>
     void OnMouseDrag() {
-
         if(!aimDisabled) {
             Vector3 pos = transform.position;
             Vector3 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
             nextAngle = Vector3.SignedAngle(direction-pos, Vector3.up, Vector3.back);
-
             if(!onDrag) {
                 previousAngle = nextAngle;
-                onDrag = true;
-            
+                onDrag = true;            
             } else {            
                 harpoon.transform.Rotate(Vector3.forward,nextAngle-previousAngle);
-                previousAngle = nextAngle;     
-
+                previousAngle = nextAngle;
             }
-        }
-      
+        }      
     }
 
     /// <summary>
@@ -60,7 +58,6 @@ public class Canon : MonoBehaviour
     void OnMouseUp()
     {
         if(!aimDisabled) {
-
             onDrag = false;
             aimDisabled = true;
             projectile.GetComponent<Projectile>().fired = true;

@@ -12,13 +12,17 @@ public class Rope : MonoBehaviour
 {
 
     public float length;
+    private float ropeUnit;
+    private Vector3 initialScale;
 
     /// <summary>
-    /// Set initial Rope length
+    /// Set initial Rope length and save its initial values
     /// </summary>
     void Start()
     {
-        length = transform.localScale.x;
+        length = 0;
+        ropeUnit = GetComponent<Renderer>().bounds.size.x*0.65f;
+        initialScale = transform.localScale;
     }
 
     /// <summary>
@@ -26,8 +30,9 @@ public class Rope : MonoBehaviour
     /// </summary>
     void Update()
     {
-        Vector3 scale = new Vector3(length*1.0f, 100.0f, 0.0f);
-        transform.localScale = scale;
-        
+        float scaleValue;
+        scaleValue = initialScale.x*(length + ropeUnit)/ropeUnit;
+        Vector3 scale = new Vector3(scaleValue, initialScale.y , 0.0f);
+        transform.localScale = scale;     
     }
 }
