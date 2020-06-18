@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3239558049943905429}
   - component: {fileID: 3239558049943905430}
-  - component: {fileID: 1787906824}
-  - component: {fileID: 1882873918}
-  - component: {fileID: 1882873923}
-  - component: {fileID: 1882873924}
-  - component: {fileID: 1882873925}
+  - component: {fileID: -7446877544297278489}
+  - component: {fileID: 6251986311011166351}
+  - component: {fileID: -3480233630425069038}
+  - component: {fileID: -8682285920245353826}
+  - component: {fileID: 5238979187072466780}
   m_Layer: 0
-  m_Name: Rectangle
+  m_Name: Rectangle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3239558049943905428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1093, y: -0.134, z: 0}
-  m_LocalScale: {x: 100, y: 60, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.4, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: dda29aaeef384124bb96113c99b85d15, type: 3}
   m_Color: {r: 0.15566039, g: 0.28773743, b: 1, a: 1}
   m_FlipX: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1787906824
+--- !u!61 &-7446877544297278489
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1882873918
+--- !u!114 &6251986311011166351
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,7 +135,7 @@ MonoBehaviour:
   Dampening: -1
   remainingTranslation: {x: 0, y: 0, z: 0}
   remainingRotation: {x: 0, y: 0, z: 0, w: 1}
---- !u!114 &1882873923
+--- !u!114 &-3480233630425069038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,7 +157,7 @@ MonoBehaviour:
   Dampening: -1
   Inertia: 0
   remainingTranslation: {x: 0, y: 0, z: 0}
---- !u!114 &1882873924
+--- !u!114 &-8682285920245353826
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,7 +180,7 @@ MonoBehaviour:
   Sensitivity: 1
   Dampening: -1
   remainingScale: {x: 0, y: 0, z: 0}
---- !u!114 &1882873925
+--- !u!114 &5238979187072466780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
