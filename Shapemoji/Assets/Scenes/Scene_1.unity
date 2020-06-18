@@ -6403,6 +6403,7 @@ MonoBehaviour:
   speed: 400
   rope: {fileID: 249988433}
   harpoonZRotation: -90
+  maxFireDistance: 2500
 --- !u!61 &1645677959
 BoxCollider2D:
   m_ObjectHideFlags: 0
