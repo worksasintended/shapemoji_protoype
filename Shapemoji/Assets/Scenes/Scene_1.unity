@@ -5011,6 +5011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1645677955}
+  revolutions: 1
 --- !u!58 &1301379290
 CircleCollider2D:
   m_ObjectHideFlags: 0

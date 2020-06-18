@@ -45,6 +45,8 @@ public class Projectile : MonoBehaviour
         {
             obtain = false;
             GameObject.Find("HarpoonCanon").GetComponent<Canon>().aimDisabled = false;
+            maxDistance = 0;
+            pullDistance = 0;
         }
     }
 
@@ -60,9 +62,12 @@ public class Projectile : MonoBehaviour
 
         if (obtain)
         {
-            float lenPull = speed;
+            float lenPull = speed * Time.deltaTime;
+
+            if (lenPull > pullDistance) lenPull = pullDistance;
+            pullDistance -= lenPull;
             
-            transform.Translate(lenPull * (-1 * Vector3.right) * Time.deltaTime);
+            transform.Translate(lenPull * (-1 * Vector3.right));
             float distPull = getDistanceToCanon(); ; //calculate remaining distance 
             rope.GetComponent<Rope>().length = distPull;
 
@@ -76,5 +81,19 @@ public class Projectile : MonoBehaviour
     private float getDistanceToCanon()
     {
         return (transform.position - initial).magnitude;
+    }
+
+    /// <summary>
+    /// determine by how much the projectile should be pulled in
+    /// </summary>
+    /// <param name="percentage"></param>
+    public void addPullDistance(float percentage)
+    {
+        if (obtain)
+        {
+            pullDistance += percentage * maxDistance;
+            if (pullDistance < 0) pullDistance = 0;
+        }
+        
     }
 }

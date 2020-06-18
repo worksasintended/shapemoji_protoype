@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-/**
- *  <summary>
- *  Class, which determines the Wheel Behaviour
- *  </summary> 
- *  <param name="projectile">
- *  GameObject of the controlled harpoon projectile
- *  </param>
- * 
-*/
+///
+/// <summary>
+/// Class, which determines the Wheel Behaviour
+/// </summary> 
+/// <param name="projectile">
+/// GameObject of the controlled harpoon projectile
+/// </param>
+/// <param name="revolutions">
+/// number of revolutions to pull the rope
+/// </param>
+///
 public class Wheel : MonoBehaviour
 {
     public GameObject projectile;
+    public float revolutions; 
 
     private bool onDrag = false;
 
@@ -46,7 +49,11 @@ public class Wheel : MonoBehaviour
         else
         {
             transform.Rotate(Vector3.forward, nextAngle - previousAngle);
+            Projectile p = projectile.GetComponent<Projectile>();
+            float distance = (nextAngle - previousAngle) / (360 * revolutions);
+            p.addPullDistance(distance);
             previousAngle = nextAngle;
+            
         }
     }
 
