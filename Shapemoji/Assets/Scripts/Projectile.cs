@@ -21,6 +21,10 @@ public class Projectile : MonoBehaviour
     public GameObject rope;
     private Vector3 initial;
 
+    private bool obtain = false;
+    private float maxDistance = 0;
+    private float pullDistance = 0; // Current allowed distance to pull
+
     /// <summary>
     /// Method to set initial projectile position
     /// </summary>
@@ -33,7 +37,15 @@ public class Projectile : MonoBehaviour
     /// Stop movement on collision
     /// </summary>
     void OnTriggerEnter2D(Collider2D other) {       
-        fired = false;
+        if (!obtain && fired) { 
+            fired = false;
+            obtain = true;
+            maxDistance = getDistanceToCanon();
+        } else
+        {
+            obtain = false;
+            GameObject.Find("HarpoonCanon").GetComponent<Canon>().aimDisabled = false;
+        }
     }
 
     /// <summary>
@@ -45,5 +57,24 @@ public class Projectile : MonoBehaviour
             transform.Translate(speed * Vector3.right * Time.deltaTime);
             rope.GetComponent<Rope>().length = (transform.position-initial).magnitude;
         }
+
+        if (obtain)
+        {
+            float lenPull = speed;
+            
+            transform.Translate(lenPull * (-1 * Vector3.right) * Time.deltaTime);
+            float distPull = getDistanceToCanon(); ; //calculate remaining distance 
+            rope.GetComponent<Rope>().length = distPull;
+
+        }
+    }
+
+    /// <summary>
+    /// get the current distance of the projectile from the canon
+    /// </summary>
+    /// <returns></returns>
+    private float getDistanceToCanon()
+    {
+        return (transform.position - initial).magnitude;
     }
 }
