@@ -19,8 +19,10 @@ public class Projectile : MonoBehaviour
     public bool fired = false;
     public float speed = 400;
     public GameObject rope;
+    public float harpoonZRotation = 45;
     private Vector3 initial;
 
+    private GameObject draggable;
     private bool obtain = false;
     private float maxDistance = 0;
     private float pullDistance = 0; // Current allowed distance to pull
@@ -41,12 +43,24 @@ public class Projectile : MonoBehaviour
             fired = false;
             obtain = true;
             maxDistance = getDistanceToCanon();
+            draggable = other.gameObject;
+            if (draggable.GetComponent<HarpoonDraggable>() == null) draggable = null;
+
+            float angle = GameObject.Find("harpoon").transform.rotation.eulerAngles.z;
+            if (draggable != null) draggable.GetComponent<HarpoonDraggable>().rotate(harpoonZRotation+angle);
         } else
         {
             obtain = false;
             GameObject.Find("HarpoonCanon").GetComponent<Canon>().aimDisabled = false;
             maxDistance = 0;
             pullDistance = 0;
+
+            if (draggable != null)
+            {
+                draggable.GetComponent<HarpoonDraggable>().transferToInventory();
+            }
+
+            draggable = null;
         }
     }
 
@@ -71,6 +85,7 @@ public class Projectile : MonoBehaviour
             float distPull = getDistanceToCanon(); ; //calculate remaining distance 
             rope.GetComponent<Rope>().length = distPull;
 
+            if (draggable != null) draggable.GetComponent<HarpoonDraggable>().moveDraggable(lenPull);
         }
     }
 
