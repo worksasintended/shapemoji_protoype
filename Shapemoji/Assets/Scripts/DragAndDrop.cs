@@ -30,41 +30,38 @@ public class DragAndDrop : MonoBehaviour
 
     void Update()
     {
-        RectTransform itemBorder = GetComponent<RectTransform>();
+        RectTransform stoneBorder = GetComponent<RectTransform>();
         RectTransform workstationBorders = workstation.GetComponent<RectTransform>();
         RectTransform emojiBorders = emoji.GetComponent<RectTransform>();
-        
+
         Rect rectWorkstation = new Rect(getLeftWorldCorner(workstationBorders).x, getLeftWorldCorner(workstationBorders).y, workstationBorders.rect.width, workstationBorders.rect.height);
         Vector2 workstationCenter = new Vector2(rectWorkstation.center.x+220, rectWorkstation.center.y+220);
-        Rect rectEmoji = new Rect(getLeftWorldCorner(emojiBorders).x, getLeftWorldCorner(emojiBorders).y, emojiBorders.rect.width, emojiBorders.rect.height);
-        Vector2 emojiCenter = new Vector2(rectEmoji.center.x+150, rectEmoji.center.y+200);
+        Rect rectEmoji = new Rect(-1610, -434, 800, 800);
         
         if (isDragging)
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             transform.Translate(mousePosition);
             
-        }else if(!rectOverlaps(itemBorder, workstationBorders)){
-            GetComponent<RectTransform>().anchoredPosition = inventoryPos;
-            
-        }else if(rectOverlaps(itemBorder, workstationBorders))
+        }else if(rectOverlaps(stoneBorder, rectWorkstation))
         {
             transform.position = workstationCenter;
             lastPos = workstationCenter;
-            
-        }else if (rectOverlaps(itemBorder, emojiBorders)/* && lastPos == workstationCenter*/)
+
+        }else if (rectOverlaps(stoneBorder, rectEmoji) && lastPos==workstationCenter)
         {
-            transform.position = emojiCenter;
+            Debug.Log(lastPos);
+        }
+        else
+        {
+            GetComponent<RectTransform>().anchoredPosition = inventoryPos;
             lastPos = transform.position;
         }
     }
     
-    bool rectOverlaps(RectTransform rectTrans1, RectTransform rectTrans2)
+    bool rectOverlaps(RectTransform rectTrans1, Rect rect2)
     {
         Rect rect1 = new Rect(getLeftWorldCorner(rectTrans1).x, getLeftWorldCorner(rectTrans1).y, rectTrans1.rect.width, rectTrans1.rect.height);
-        Rect rect2 = new Rect(getLeftWorldCorner(rectTrans2).x, getLeftWorldCorner(rectTrans2).y, rectTrans2.rect.width, rectTrans2.rect.height);
-
-        Debug.Log(rect2);
         
         if (rect1.center.x > rect2.xMin+100 && rect1.center.x < rect2.xMax+150)
         {
