@@ -7,7 +7,7 @@ public class DragAndDrop : MonoBehaviour
 {
 
     private bool isDragging;
-    [SerializeField] private SpriteRenderer werkbank;
+    [SerializeField] private SpriteRenderer workstation;
     [SerializeField] private SpriteRenderer emoji;
     private Vector2 inventoryPos;
     private Vector2 lastPos;
@@ -15,7 +15,7 @@ public class DragAndDrop : MonoBehaviour
     void Awake()
     {
         inventoryPos = GetComponent<RectTransform>().anchoredPosition;
-        lastPos = GetComponent<RectTransform>().anchoredPosition;
+        lastPos = transform.position;
     }
     
     public void OnMouseDown()
@@ -31,32 +31,55 @@ public class DragAndDrop : MonoBehaviour
     void Update()
     {
         RectTransform itemBorder = GetComponent<RectTransform>();
-        RectTransform werkbankBorders = werkbank.GetComponent<RectTransform>();
+        RectTransform workstationBorders = workstation.GetComponent<RectTransform>();
         RectTransform emojiBorders = emoji.GetComponent<RectTransform>();
+        
+        Rect rectWorkstation = new Rect(getLeftWorldCorner(workstationBorders).x, getLeftWorldCorner(workstationBorders).y, workstationBorders.rect.width, workstationBorders.rect.height);
+        Vector2 workstationCenter = new Vector2(rectWorkstation.center.x+220, rectWorkstation.center.y+220);
+        Rect rectEmoji = new Rect(getLeftWorldCorner(emojiBorders).x, getLeftWorldCorner(emojiBorders).y, emojiBorders.rect.width, emojiBorders.rect.height);
+        Vector2 emojiCenter = new Vector2(rectEmoji.center.x+150, rectEmoji.center.y+200);
         
         if (isDragging)
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             transform.Translate(mousePosition);
-
-        }else if(!rectOverlaps(itemBorder, werkbankBorders)){
+            
+        }else if(!rectOverlaps(itemBorder, workstationBorders)){
             GetComponent<RectTransform>().anchoredPosition = inventoryPos;
-        
-        }else if(rectOverlaps(itemBorder, werkbankBorders))
+            
+        }else if(rectOverlaps(itemBorder, workstationBorders))
         {
-            GetComponent<RectTransform>().anchoredPosition = werkbank.GetComponent<RectTransform>().anchoredPosition;
-            lastPos = GetComponent<RectTransform>().anchoredPosition;
-        }else if (rectOverlaps(itemBorder, emojiBorders) && lastPos == werkbank.GetComponent<RectTransform>().anchoredPosition)
+            transform.position = workstationCenter;
+            lastPos = workstationCenter;
+            
+        }else if (rectOverlaps(itemBorder, emojiBorders)/* && lastPos == workstationCenter*/)
         {
-            GetComponent<RectTransform>().anchoredPosition = emoji.GetComponent<RectTransform>().anchoredPosition;
+            transform.position = emojiCenter;
+            lastPos = transform.position;
         }
     }
     
     bool rectOverlaps(RectTransform rectTrans1, RectTransform rectTrans2)
     {
-        Rect rect1 = new Rect(rectTrans1.localPosition.x, rectTrans1.localPosition.y, rectTrans1.rect.width, rectTrans1.rect.height);
-        Rect rect2 = new Rect(rectTrans2.offsetMin.x, rectTrans2.offsetMin.y, rectTrans2.rect.width, rectTrans2.rect.height);
+        Rect rect1 = new Rect(getLeftWorldCorner(rectTrans1).x, getLeftWorldCorner(rectTrans1).y, rectTrans1.rect.width, rectTrans1.rect.height);
+        Rect rect2 = new Rect(getLeftWorldCorner(rectTrans2).x, getLeftWorldCorner(rectTrans2).y, rectTrans2.rect.width, rectTrans2.rect.height);
 
-        return rect2.Overlaps(rect1);
+        Debug.Log(rect2);
+        
+        if (rect1.center.x > rect2.xMin+100 && rect1.center.x < rect2.xMax+150)
+        {
+            if (rect1.center.y > rect2.yMin+100 && rect1.center.y < rect2.yMax+300)
+            {
+                return true;
+            }
+        }
+        return false;
+    
+    }
+    Vector2 getLeftWorldCorner(RectTransform rt)
+    {
+        Vector3[] v = new Vector3[4];
+        rt.GetWorldCorners(v);
+        return v[0];
     }
 }
