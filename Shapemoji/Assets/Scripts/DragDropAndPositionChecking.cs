@@ -5,11 +5,18 @@ namespace Lean.Touch
 	/// <summary>This component allows you to translate the current GameObject relative to the camera using the finger drag gesture.</summary>
 	[HelpURL(LeanTouch.HelpUrlPrefix + "LeanDragTranslate")]
 	[AddComponentMenu(LeanTouch.ComponentPathPrefix + "Drag Translate")]
-	public class LeanDragTranslate : MonoBehaviour
+	public class DragDropAndPositionChecking : MonoBehaviour
 	{
 		/// <summary>The method used to find fingers to use with this component. See LeanFingerFilter documentation for more information.</summary>
 		public LeanFingerFilter Use = new LeanFingerFilter(true);
 
+		[SerializeField] private SpriteRenderer workstation;
+    	private Vector2 inventoryPos;
+    	private Vector2 lastPos;
+		private bool isDragging;
+		private Vector2 oldScale;
+		private Quaternion oldRotation;
+		
 		/// <summary>The camera the translation will be calculated using.\n\nNone = MainCamera.</summary>
 		[Tooltip("The camera the translation will be calculated using.\n\nNone = MainCamera.")]
 		public Camera Camera;
@@ -57,51 +64,97 @@ namespace Lean.Touch
 		protected virtual void Awake()
 		{
 			Use.UpdateRequiredSelectable(gameObject);
+			inventoryPos = transform.position;
+        	lastPos = transform.position;
+            GetComponent<LeanPinchScale>().enabled = false;
+            GetComponent<LeanTwistRotate>().enabled = false;
+            oldScale = transform.localScale;
+            oldRotation = transform.rotation;
 		}
+		
+		public void OnMouseDown()
+    	{
+        	isDragging = true;
+    	}
+
+    	public void OnMouseUp()
+    	{
+        	isDragging = false;
+    	}
 
 		protected virtual void Update()
 		{
-			// Store
-			var oldPosition = transform.localPosition;
+			RectTransform workstationBorders = workstation.GetComponent<RectTransform>();
+			Rect rectWorkstation = new Rect(getLeftWorldCorner(workstationBorders).x, getLeftWorldCorner(workstationBorders).y, 300, 600);
+			Vector2 workstationCenter = new Vector2(rectWorkstation.center.x, rectWorkstation.center.y);
+			Rect rectEmoji = new Rect(-1810, -282, 600, 600);
+			if(isDragging){
+				// Store
+				var oldPosition = transform.localPosition;
 
-			// Get the fingers we want to use
-			var fingers = Use.GetFingers();
+				// Get the fingers we want to use
+				var fingers = Use.GetFingers();
 
-			// Calculate the screenDelta value based on these fingers
-			var screenDelta = LeanGesture.GetScreenDelta(fingers);
+				// Calculate the screenDelta value based on these fingers
+				var screenDelta = LeanGesture.GetScreenDelta(fingers);
 
-			if (screenDelta != Vector2.zero)
-			{
-				// Perform the translation
-				if (transform is RectTransform)
+				if (screenDelta != Vector2.zero)
 				{
-					TranslateUI(screenDelta);
+					// Perform the translation
+					if (transform is RectTransform)
+					{
+						TranslateUI(screenDelta);
+					}
+					else
+					{
+						Translate(screenDelta);
+					}
 				}
-				else
+
+				// Increment
+				remainingTranslation += transform.localPosition - oldPosition;
+
+				// Get t value
+				var factor = LeanTouch.GetDampenFactor(Dampening, Time.deltaTime);
+
+				// Dampen remainingDelta
+				var newRemainingTranslation = Vector3.Lerp(remainingTranslation, Vector3.zero, factor);
+
+				// Shift this transform by the change in delta
+				transform.localPosition = oldPosition + remainingTranslation - newRemainingTranslation;
+
+				if (fingers.Count == 0 && Inertia > 0.0f && Dampening > 0.0f)
 				{
-					Translate(screenDelta);
+					newRemainingTranslation = Vector3.Lerp(newRemainingTranslation, remainingTranslation, Inertia);
 				}
-			}
 
-			// Increment
-			remainingTranslation += transform.localPosition - oldPosition;
+				// Update remainingDelta with the dampened value
+				remainingTranslation = newRemainingTranslation;
 
-			// Get t value
-			var factor = LeanTouch.GetDampenFactor(Dampening, Time.deltaTime);
 
-			// Dampen remainingDelta
-			var newRemainingTranslation = Vector3.Lerp(remainingTranslation, Vector3.zero, factor);
-
-			// Shift this transform by the change in delta
-			transform.localPosition = oldPosition + remainingTranslation - newRemainingTranslation;
-
-			if (fingers.Count == 0 && Inertia > 0.0f && Dampening > 0.0f)
+			}else if(rectOverlaps(rectWorkstation))
 			{
-				newRemainingTranslation = Vector3.Lerp(newRemainingTranslation, remainingTranslation, Inertia);
-			}
+				GetComponent<LeanPinchScale>().enabled = true;
+				GetComponent<LeanTwistRotate>().enabled = true;
+				transform.position = workstationCenter;
+				lastPos = workstationCenter;
 
-			// Update remainingDelta with the dampened value
-			remainingTranslation = newRemainingTranslation;
+			}else if (rectOverlaps(rectEmoji) && lastPos==workstationCenter)
+			{
+				GetComponent<LeanPinchScale>().enabled = false;
+				GetComponent<LeanTwistRotate>().enabled = false;
+			
+				Debug.Log(lastPos);
+			}
+			else
+			{ 
+				GetComponent<LeanPinchScale>().enabled = false;
+				GetComponent<LeanTwistRotate>().enabled = false;
+				transform.position = inventoryPos;
+				lastPos = transform.position;
+				transform.localScale = oldScale;
+				transform.rotation = oldRotation;
+			}
 		}
 
 		private void TranslateUI(Vector2 screenDelta)
@@ -131,6 +184,8 @@ namespace Lean.Touch
 			{
 				transform.position = worldPoint;
 			}
+
+		
 		}
 
 		private void Translate(Vector2 screenDelta)
@@ -153,6 +208,25 @@ namespace Lean.Touch
 			{
 				Debug.LogError("Failed to find camera. Either tag your camera as MainCamera, or set one in this component.", this);
 			}
+		}
+
+		bool rectOverlaps(Rect rect2)
+		{
+			if (transform.position.x > rect2.xMin && transform.position.x < rect2.xMax)
+			{
+				if (transform.position.y > rect2.yMin && transform.position.y < rect2.yMax)
+				{
+				   return true;
+				}
+			}
+			return false;
+    
+		}
+		Vector2 getLeftWorldCorner(RectTransform rt)
+		{
+			Vector3[] v = new Vector3[4];
+			rt.GetWorldCorners(v);
+			return v[0];
 		}
 	}
 }

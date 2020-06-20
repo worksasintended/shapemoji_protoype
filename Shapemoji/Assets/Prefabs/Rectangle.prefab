@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3239558049943905429}
+  - component: {fileID: 6856590390432591824}
   - component: {fileID: 3239558049943905430}
   - component: {fileID: -7446877544297278489}
   - component: {fileID: 6251986311011166351}
@@ -16,13 +16,13 @@ GameObject:
   - component: {fileID: -8682285920245353826}
   - component: {fileID: 5238979187072466780}
   m_Layer: 0
-  m_Name: Rectangle1
+  m_Name: Rectangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3239558049943905429
+--- !u!4 &6856590390432591824
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,6 +153,8 @@ MonoBehaviour:
     RequiredFingerCount: 0
     RequiredMouseButtons: 0
     RequiredSelectable: {fileID: 0}
+  workstation: {fileID: 8877749977031692231, guid: 34acaf507a19ef4438cb57ddf5fe2d23,
+    type: 3}
   Camera: {fileID: 0}
   Dampening: -1
   Inertia: 0
