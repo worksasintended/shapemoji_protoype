@@ -47,39 +47,46 @@ public class Projectile : MonoBehaviour
     /// Stop movement on collision
     /// </summary>
     void OnTriggerEnter2D(Collider2D other) {       
-        if (!obtain && fired) { 
-            fired = false;
-            obtain = true;
-            maxDistance = getDistanceToCanon();
-            if (other != null) draggable = other.gameObject;
-            if (draggable != null)
+        if (other != null)
+        {
+            if (!obtain && fired)
             {
-                if (draggable.GetComponent<HarpoonDraggable>() != null)
+                fired = false;
+                obtain = true;
+                maxDistance = getDistanceToCanon();
+                if (other != null) draggable = other.gameObject;
+                if (draggable != null)
                 {
-                    float angle = GameObject.Find("harpoon").transform.rotation.eulerAngles.z;
-                    draggable.GetComponent<HarpoonDraggable>().rotate(harpoonZRotation + angle);
-                } else
-                {
-                    draggable = null;
+                    if (draggable.GetComponent<HarpoonDraggable>() != null)
+                    {
+                        float angle = GameObject.Find("harpoon").transform.rotation.eulerAngles.z;
+                        draggable.GetComponent<HarpoonDraggable>().rotate(harpoonZRotation + angle);
+                    }
+                    else
+                    {
+                        draggable = null;
+                    }
+
+
                 }
 
-                
             }
-            
-        } else
-        {
-            obtain = false;
-            GameObject.Find("HarpoonCanon").GetComponent<Canon>().aimDisabled = false;
-            maxDistance = 0;
-            pullDistance = 0;
-
-            if (draggable != null)
+            else
             {
-                draggable.GetComponent<HarpoonDraggable>().transferToInventory();
-            }
+                obtain = false;
+                GameObject.Find("HarpoonCanon").GetComponent<Canon>().aimDisabled = false;
+                maxDistance = 0;
+                pullDistance = 0;
 
-            draggable = null;
+                if (draggable != null)
+                {
+                    draggable.GetComponent<HarpoonDraggable>().transferToInventory();
+                }
+
+                draggable = null;
+            }
         }
+
     }
 
     /// <summary>
